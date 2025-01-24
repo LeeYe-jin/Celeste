@@ -1,5 +1,8 @@
 # Celeste
 
+<img src="[https://github.com/elizaOS/eliza/blob/develop/docs/static/img/eliza_banner.jpg](https://github.com/LeeYe-jin/Celeste/blob/develop/docs/static/img/Celeste_banner.png?raw=true)" alt="Celeste Banner" width="100%" />
+
+
 Celeste is an AI-driven motivational assistant designed to encourage digital wellness and habit formation through engaging tweets and responses. With Celeste, you can inspire your audience with practical advice, tips, and uplifting content.
 
 ---
