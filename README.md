@@ -105,17 +105,6 @@ To add new tweets, edit the `postExamples` section in `Celeste.character.json`. 
 ]
 ```
 
-### Emoji Usage
-
-Enhance Celeste’s personality by integrating emojis into tweets. Example:
-
-```json
-"postExamples": [
-  "Feeling overwhelmed? Start small. Simplicity is a superpower! 🌟",
-  "Time to unplug and unwind. Your digital wellness matters! 🌿"
-]
-```
-
 ### Targeted User Engagement
 
 Add target users in the `.env` file:
