@@ -1,185 +1,169 @@
-# Eliza - Multi-agent simulation framework
+# Celeste
 
-# https://github.com/elizaOS/eliza
+<img src="https://github.com/LeeYe-jin/Celeste/blob/develop/docs/static/img/Celeste_banner.png?raw=true" alt="Celeste Banner" width="100%" />
 
-# Visit https://eliza.builders for support
+Celeste is an AI-driven motivational assistant designed to encourage digital wellness and habit formation through engaging tweets and responses. With Celeste, you can inspire your audience with practical advice, tips, and uplifting content.
 
-## 🌍 README Translations
+---
 
-[中文说明](./README_CN.md) | [Deutsch](./README_DE.md) | [Français](./README_FR.md) | [ไทย](./README_TH.md) | [Español](README_ES.md)
+## 🚀 Features
 
-# dev branch
+- **Daily Tweets**: Automatically post motivational messages with customizable styles.
+- **Interactive Engagement**: Respond to user mentions and interact with specific accounts.
+- **Customizable Personality**: Easily tweak Celeste's tone, topics, and style to match your vision.
+- **Emoji Support**: Add personality and warmth to messages with emoji integrations.
+- **Targeted Responses**: Engage with specific user accounts or hashtags.
 
-<img src="static/img/eliza_banner.jpg" alt="Eliza Banner" width="100%" />
+---
 
-_As seen powering [@DegenSpartanAI](https://x.com/degenspartanai) and [@MarcAIndreessen](https://x.com/pmairca)_
-
-- Multi-agent simulation framework
-- Add as many unique characters as you want with [characterfile](https://github.com/lalalune/characterfile/)
-- Full-featured Discord and Twitter connectors, with Discord voice channel support
-- Full conversational and document RAG memory
-- Can read links and PDFs, transcribe audio and videos, summarize conversations, and more
-- Highly extensible - create your own actions and clients to extend Eliza's capabilities
-- Supports open source and local models (default configured with Nous Hermes Llama 3.1B)
-- Supports OpenAI for cloud inference on a light-weight device
-- "Ask Claude" mode for calling Claude on more complex queries
-- 100% Typescript
-
-# Getting Started
-
-**Prerequisites (MUST):**
-
-- [Node.js 23+](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
-- [pnpm](https://pnpm.io/installation)
-
-### Edit the .env file
-
-- Copy .env.example to .env and fill in the appropriate values
-- Edit the TWITTER environment variables to add your bot's username and password
-
-### Edit the character file
-
-- Check out the file `src/core/defaultCharacter.ts` - you can modify this
-- You can also load characters with the `pnpm start --characters="path/to/your/character.json"` and run multiple bots at the same time.
-
-After setting up the .env file and character file, you can start the bot with the following command:
+## 📂 Project Structure
 
 ```
-pnpm i
-pnpm start
+Celeste/
+├── characters/
+│   └── Celeste.character.json   # Main character configuration
+├── src/
+│   ├── clients/                 # API clients (e.g., Twitter integration)
+│   ├── config/                  # General configuration files
+│   ├── database/                # Data persistence
+│   ├── index.ts                 # Entry point for the application
+├── .env                         # Environment variables (API keys, etc.)
+├── README.md                    # Project documentation
+└── package.json                 # Dependency management
 ```
 
-# Customising Eliza
+---
 
-### Adding custom actions
+## 🛠️ Setup Instructions
 
-To avoid git clashes in the core directory, we recommend adding custom actions to a `custom_actions` directory and then adding them to the `elizaConfig.yaml` file. See the `elizaConfig.example.yaml` file for an example.
+Follow these steps to set up Celeste:
 
-## Running with different models
+### 1. Clone the Repository
 
-### Run with Llama
-
-You can run Llama 70B or 405B models by setting the environment variable for a provider that supports these models. Llama is also supported locally if no other provider is set.
-
-### Run with Grok
-
-You can run Grok models by setting the `GROK_API_KEY` environment variable to your Grok API key and setting grok as the model provider in your character file.
-
-### Run with OpenAI
-
-You can run OpenAI models by setting the `OPENAI_API_KEY` environment variable to your OpenAI API key and setting openai as the model provider in your character file.
-
-## Additional Requirements
-
-You may need to install Sharp. If you see an error when starting up, try installing it with the following command:
-
-```
-pnpm install --include=optional sharp
+```bash
+git clone <repository_url>
+cd eliza-starter-1
 ```
 
-# Environment Setup
+### 2. Install Dependencies
 
-You will need to add environment variables to your .env file to connect to various platforms:
+Ensure you have `pnpm` installed. Then, run:
 
-```
-# Required environment variables
-DISCORD_APPLICATION_ID=
-DISCORD_API_TOKEN= # Bot token
-OPENAI_API_KEY=sk-* # OpenAI API key, starting with sk-
-ELEVENLABS_XI_API_KEY= # API key from elevenlabs
-
-# ELEVENLABS SETTINGS
-ELEVENLABS_MODEL_ID=eleven_multilingual_v2
-ELEVENLABS_VOICE_ID=21m00Tcm4TlvDq8ikWAM
-ELEVENLABS_VOICE_STABILITY=0.5
-ELEVENLABS_VOICE_SIMILARITY_BOOST=0.9
-ELEVENLABS_VOICE_STYLE=0.66
-ELEVENLABS_VOICE_USE_SPEAKER_BOOST=false
-ELEVENLABS_OPTIMIZE_STREAMING_LATENCY=4
-ELEVENLABS_OUTPUT_FORMAT=pcm_16000
-
-TWITTER_DRY_RUN=false
-TWITTER_USERNAME= # Account username
-TWITTER_PASSWORD= # Account password
-TWITTER_EMAIL= # Account email
-
-
-# For asking Claude stuff
-ANTHROPIC_API_KEY=
-
-WALLET_SECRET_KEY=EXAMPLE_WALLET_SECRET_KEY
-WALLET_PUBLIC_KEY=EXAMPLE_WALLET_PUBLIC_KEY
-
-BIRDEYE_API_KEY=
-
-SOL_ADDRESS=So11111111111111111111111111111111111111112
-SLIPPAGE=1
-SOLANA_RPC_URL=https://api.mainnet-beta.solana.com
-HELIUS_API_KEY=
-
-
-## Telegram
-TELEGRAM_BOT_TOKEN=
-
-TOGETHER_API_KEY=
-```
-
-# Local Inference Setup
-
-### CUDA Setup
-
-If you have an NVIDIA GPU, you can install CUDA to speed up local inference dramatically.
-
-```
+```bash
 pnpm install
-npx --no node-llama-cpp source download --gpu cuda
 ```
 
-Make sure that you've installed the CUDA Toolkit, including cuDNN and cuBLAS.
+### 3. Configure Environment Variables
 
-### Running locally
+Create a `.env` file in the project root and add the following:
 
-By default, the bot will download and use a local model. You can change this by setting the environment variables for the model you want to use.
+```plaintext
+TWITTER_EMAIL=<your_twitter_email>
+TWITTER_USERNAME=<your_twitter_username>
+TWITTER_PASSWORD=<your_twitter_password>
+OPENAI_API_KEY=<your_openai_api_key>
+```
 
-# Clients
+### 4. Character Configuration
 
-## Discord Bot
+Modify the `Celeste.character.json` file in the `characters/` folder to customize Celeste’s personality, topics, and style. Example:
 
-For help with setting up your Discord Bot, check out here: https://discordjs.guide/preparations/setting-up-a-bot-application.html
+```json
+{
+  "name": "Celeste",
+  "clients": ["twitter"],
+  "modelProvider": "openai",
+  "config": {
+    "actionProcessing": true
+  },
+  "topics": ["digital wellness", "mindfulness", "time management"]
+}
+```
 
-# Development
+### 5. Run the Application
 
-## Testing
-
-To run the test suite:
+Start Celeste using the following command:
 
 ```bash
-pnpm test           # Run tests once
-pnpm test:watch    # Run tests in watch mode
+pnpm start --characters="/path/to/Celeste.character.json"
 ```
 
-For database-specific tests:
+---
 
+## ✍️ Customization
+
+### Adding New Tweets
+
+To add new tweets, edit the `postExamples` section in `Celeste.character.json`. For example:
+
+```json
+"postExamples": [
+  "🌟 Start your day with gratitude and watch positivity flow!",
+  "📚 Take a break and read something inspiring today!",
+  "🧘‍♂️ Remember, your well-being matters—breathe and reset."
+]
+```
+
+### Emoji Usage
+
+Enhance Celeste’s personality by integrating emojis into tweets. Example:
+
+```json
+"postExamples": [
+  "Feeling overwhelmed? Start small. Simplicity is a superpower! 🌟",
+  "Time to unplug and unwind. Your digital wellness matters! 🌿"
+]
+```
+
+### Targeted User Engagement
+
+Add target users in the `.env` file:
+
+```plaintext
+TARGET_USERS=user1,user2,user3
+```
+
+---
+
+## 🐛 Troubleshooting
+
+### Emoji Not Displaying Correctly
+
+1. **Ensure Encoding**: Verify that the character encoding supports Unicode.
+2. **Check Twitter API Logs**: Ensure the message is being sent without truncation.
+
+### Application Not Starting
+
+- **Error**: `Unsupported engine: wanted {"node":">=22"}`
+  - Solution: Update Node.js to version 22 or higher.
+  
 ```bash
-pnpm test:sqlite   # Run tests with SQLite
-pnpm test:sqljs    # Run tests with SQL.js
+nvm install 22
+nvm use 22
 ```
 
-Tests are written using Jest and can be found in `src/**/*.test.ts` files. The test environment is configured to:
+### Not Responding to Mentions
 
-- Load environment variables from `.env.test`
-- Use a 2-minute timeout for long-running tests
-- Support ESM modules
-- Run tests in sequence (--runInBand)
+1. Confirm `actionProcessing` is enabled in `Celeste.character.json`.
+2. Verify API keys and permissions in `.env`.
 
-To create new tests, add a `.test.ts` file adjacent to the code you're testing.
+---
 
-## Docs Updates
+## 🌟 Future Enhancements
 
-Please make sure to verify if the documentation provided is correct. In order to do so, please run the docs service.
+- Add multi-platform support (e.g., Slack, Discord).
+- Implement dynamic responses to trending topics.
+- Improve conversational AI for real-time interactions.
 
-```console
-docker compose -f docker-compose-docs.yaml up --build
-```
+---
 
-The docusaurus server will get started and you can verify it locally at https://localhost:3000/eliza.
+## 👩‍💻 Contributors
+
+- [Your Name](https://github.com/yourusername)
+- Open to contributions! Submit a pull request or create an issue.
+
+---
+
+## 📜 License
+
+This project is licensed under the MIT License. See the LICENSE file for details.
